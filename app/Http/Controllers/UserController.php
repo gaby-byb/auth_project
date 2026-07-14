@@ -8,6 +8,25 @@ use App\Models\User;
 
 class UserController extends Controller
 {
+    public function login(Request $request)
+    {
+        $incomingFields = $request->validate([
+            'loginname' => 'required',
+            'loginpassword' => 'required'
+        ]);
+
+        if (
+            Auth::attempt([
+                'name' => $incomingFields['loginname'],
+                'password' => $incomingFields['loginpassword'],
+            ])
+        ) {
+            $request->session()->regenerate();
+
+            return redirect('/');
+        }
+    }
+
     public function logout() {
         Auth::logout();
         return redirect('/register');
@@ -23,7 +42,7 @@ class UserController extends Controller
         $incomingFields['password'] = bcrypt($incomingFields['password']);
         $user = User::create($incomingFields);
 
-        auth::login($user);
+        Auth::login($user);
         return redirect('/');
     }
 }

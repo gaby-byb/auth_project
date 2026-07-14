@@ -14,6 +14,16 @@
     </form>
 @else
     <div>
+        <h2>Login</h2>
+        <form action="/login" method="post">
+            @csrf
+            <input type="text" name="loginame" placeholder="name">
+            <input type="password" name="loginpassword" placeholder="password">
+            <button type="submit">Login</button>
+        </form>  
+
+    </div>
+    <div>
         <h2>Register</h2>
         <form action="/register" method="post">
             @csrf
