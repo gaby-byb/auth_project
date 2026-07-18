@@ -22,7 +22,7 @@ class UserController extends Controller
             ])
         ) {
             $request->session()->regenerate();
-
+            echo "sucess";
             return redirect('/');
         }
     }
