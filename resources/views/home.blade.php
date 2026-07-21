@@ -15,6 +15,7 @@
 @endif
 
 @auth
+    <h1>yOU'RE IN</h1>
     <p>congrats you are logged in</p>
     <form action="/logout" method="POST">
         @csrf

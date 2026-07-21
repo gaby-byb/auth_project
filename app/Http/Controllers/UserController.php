@@ -29,7 +29,7 @@ class UserController extends Controller
 
     public function logout() {
         Auth::logout();
-        return redirect('/register');
+        return redirect('/');
     }
     public function register(Request $request) {
         $incomingFields = $request->validate(
