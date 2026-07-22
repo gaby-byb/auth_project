@@ -22,9 +22,9 @@ class UserController extends Controller
             ])
         ) {
             $request->session()->regenerate();
-            echo "sucess";
             return redirect('/');
-        }
+            }
+            return back()->withErrors(['loginname' => 'Invalid username or password.',])->onlyInput('loginname');
     }
 
     public function logout() {
