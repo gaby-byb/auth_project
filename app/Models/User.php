@@ -29,4 +29,8 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+    public function userPosts() {
+        // this refers to the current user-> inside is the user id
+        return $this->hasMany(Post::class, 'user_id');
+    }
 }

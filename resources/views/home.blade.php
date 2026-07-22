@@ -55,7 +55,32 @@
                             </button>
                         </form>
                     </div>
+
+                    <div class="rounded-lg border border-zinc-800 bg-zinc-900 p-6 shadow-xl">
+                        <h2 class="text-2xl font-semibold text-white">All Posts</h2>
+                        @foreach ($posts as $post)
+                        <article>
+                            <h3 class="text-lg font-semibold text-white"
+                            >{{ $post['title'] }}</h3>
+                            <p class="mt-2 text-sm leading-6 text-zinc-300">
+                                {{ $post['body'] }}
+                            </p>
+                            <div class="mt-4 flex items-center justify-between border-t border-zinc-800 pt-3">
+                                <span class="text-xs text-zinc-500">
+                                    {{ $post->created_at->diffForHumans() }}
+                                </span>
+                                <button class="text-sm font-medium text-emerald-400 hover:text-emerald-300">
+                                    Edit
+                                </button>
+
+                            </div>
+                        </article>
+                    
+                        @endforeach
+                    </div>
                 </section>
+     
+       
             @else
                 <section class="mx-auto grid max-w-4xl gap-6 md:grid-cols-2">
                     <div class="rounded-lg border border-zinc-800 bg-zinc-900 p-6 shadow-xl">

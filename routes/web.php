@@ -2,11 +2,16 @@
 
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\UserController;
+use App\Models\User;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
 use Symfony\Component\Routing\Loader\Configurator\Routes;
 
 Route::get('/', function () {
-    return view('home');
+    /** @var \App\Models\User $user */
+    $user = Auth::user();
+    $posts = $user->userPosts()->latest()->get();
+    return view('home', ['posts' => $posts]);
 });
 
 Route::post('/register', [UserController::class, 'register']);
