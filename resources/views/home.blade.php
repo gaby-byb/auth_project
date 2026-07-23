@@ -56,32 +56,40 @@
                         </form>
                     </div>
 
-                    <div class="rounded-lg border border-zinc-800 bg-zinc-900 p-6 shadow-xl">
+                    <div class="rounded-lg border border-zinc-800 bg-zinc-900 p-6 shadow-xl md:col-span-2">
                         <h2 class="text-2xl font-semibold text-white">All Posts</h2>
-                        @foreach ($posts as $post)
-                        <article>
-                            <h3 class="text-lg font-semibold text-white"
-                            >{{ $post['title'] }}</h3>
-                            <p class="mt-2 text-sm leading-6 text-zinc-300">
-                                {{ $post['body'] }}
-                            </p>
-                            <div class="mt-4 flex items-center justify-between border-t border-zinc-800 pt-3">
-                                <span class="text-xs text-zinc-500">
-                                    {{ $post->created_at->diffForHumans() }}
-                                </span>
-                                <p><a href="/edit-post/{{ $post->id }}">Edit</a></p>
-                                    
-                                </button>
-                                <form action="/delete-post/{{ $post->id }}" method="POST">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button>Delete</button>
-                                </form>
 
-                            </div>
-                        </article>
-                    
-                        @endforeach
+                        <div class="mt-5 space-y-4">
+                            @forelse ($posts as $post)
+                                <article class="rounded-lg border border-zinc-800 bg-zinc-950 p-4">
+                                    <h3 class="text-lg font-semibold text-white">{{ $post['title'] }}</h3>
+                                    <p class="mt-2 text-sm leading-6 text-zinc-300">
+                                        {{ $post['body'] }}
+                                    </p>
+                                    <div class="mt-4 flex items-center justify-between border-t border-zinc-800 pt-3">
+                                        <span class="text-xs text-zinc-500">
+                                            {{ $post->created_at->diffForHumans() }}
+                                        </span>
+                                        <div class="flex items-center gap-3">
+                                            <a href="/edit-post/{{ $post->id }}" class="text-sm font-medium text-sky-300 transition hover:text-sky-200">
+                                                Edit
+                                            </a>
+                                            <form action="/delete-post/{{ $post->id }}" method="POST">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" class="text-sm font-medium text-red-300 transition hover:text-red-200">
+                                                    Delete
+                                                </button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </article>
+                            @empty
+                                <p class="rounded-lg border border-dashed border-zinc-700 p-4 text-sm text-zinc-400">
+                                    No posts yet.
+                                </p>
+                            @endforelse
+                        </div>
                     </div>
                 </section>
      
