@@ -69,9 +69,14 @@
                                 <span class="text-xs text-zinc-500">
                                     {{ $post->created_at->diffForHumans() }}
                                 </span>
-                                <button class="text-sm font-medium text-emerald-400 hover:text-emerald-300">
-                                    Edit
+                                <p><a href="/edit-post/{{ $post->id }}">Edit</a></p>
+                                    
                                 </button>
+                                <form action="/delete-post/{{ $post->id }}" method="POST">
+                                    @csrf
+                                    @method('DELETEs')
+                                    <button>Delete</button>
+                                </form>
 
                             </div>
                         </article>
