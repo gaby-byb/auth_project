@@ -74,7 +74,7 @@
                                 </button>
                                 <form action="/delete-post/{{ $post->id }}" method="POST">
                                     @csrf
-                                    @method('DELETEs')
+                                    @method('DELETE')
                                     <button>Delete</button>
                                 </form>
 
